@@ -75,7 +75,7 @@ yum install webmin -y
 
 sudo reboot
 
-=============================================================
+================= (NAO ESQUECER DE TROCAR NOME NA MAQUINA E NO ENDERECO DE MAQUINA ============================================
 
 
 
