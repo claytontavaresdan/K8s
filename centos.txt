@@ -1,9 +1,17 @@
 yum update -y
 yum upgrade -y
 
+yum install -y yum-utils device-mapper-persistent-data lvm2 wget nano net-tools
+
+
 
 setenforce 0
 sed -i --follow-symlinks 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig/selinux
+sudo systemctl stop firewalld
+sudo systemctl disable firewalld
+sudo systemctl mask --now firewalld
+
+
 
 modprobe br_netfilter
 echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables
@@ -12,7 +20,6 @@ swapoff -a
 
 nano /etc/fstab
 
-yum install -y yum-utils device-mapper-persistent-data lvm2 wget nano 
 
 
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
@@ -43,6 +50,28 @@ sed -i 's/cgroup-driver=systemd/cgroup-driver=cgroupfs/g' /etc/systemd/system/ku
 
 systemctl daemon-reload
 systemctl restart kubelet
+
+=======================================================
+
+
+nano /etc/yum.repos.d/webmin.repo
+
+[Webmin]
+name=Webmin Distribution Neutral
+#baseurl=https://download.webmin.com/download/yum
+mirrorlist=https://download.webmin.com/download/yum/mirrorlist
+enabled=1
+
+wget https://download.webmin.com/jcameron-key.asc
+rpm --import jcameron-key.asc
+
+yum install webmin -y
+
+
+=============================================================
+
+
+
 
 
 
