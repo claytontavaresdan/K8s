@@ -1,3 +1,13 @@
+kubeadm join 192.168.0.230:6443 --token xvat25.iogqux3j9h4pokve \
+    --discovery-token-ca-cert-hash sha256:3fcd971e39e16362a5e2004bacf69bd4755ba6937fd44d89595e2fb84cc86599
+
+
+
+
+
+
+
+
 sudo ufw disable
 
 sudo swapoff -a 
