@@ -1,4 +1,6 @@
 apt-get update -y 
+apt-get upgrade -y 
+
 apt-get install apt-transport-https ca-certificates curl software-properties-common -y
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo apt-key fingerprint 0EBFCD88
@@ -6,8 +8,10 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 sudo apt remove docker docker-engine docker.io containerd runc
 sudo apt update
 sudo apt install docker-ce docker-ce-cli containerd.io
-sudo systemctl start docker
+
 sudo systemctl enable docker
+sudo systemctl start docker
+
 sudo docker run -d --restart=unless-stopped -p 8888:8080 rancher/server:stable
 
 
