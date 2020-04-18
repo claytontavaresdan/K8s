@@ -15,4 +15,11 @@ sudo systemctl start docker
 sudo docker run -d --restart=unless-stopped -p 8888:8080 rancher/server:stable
 
 
+sudo docker run --rm --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:v1.2.11 http://k8s.mpi.com.br:8888/v1/scripts/62EE7CEDF112DC53098C:1577750400000:tLmXHxYM14fMA3lRy7dDuIYNS7c
+
+
+
+
+
+
 https://websiteforstudents.com/how-to-install-and-configure-rancher-on-ubuntu-18-04-16-04/
