@@ -1,0 +1,39 @@
+    kubectl expose rc example --port=8765 --target-port=9376 \
+        --name=example-service --type=LoadBalancer
+        
+        kubectl describe services example-service
+        
+        =================================================================
+        
+        
+        Annotation to modify the LoadBalancer behavior for preservation of Source IP
+        
+        
+        
+        {
+      "kind": "Service",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "example-service",
+        "annotations": {
+            "service.beta.kubernetes.io/external-traffic": "OnlyLocal"
+        }
+      },
+      "spec": {
+        "ports": [{
+          "port": 8765,
+          "targetPort": 9376
+        }],
+        "selector": {
+          "app": "example"
+        },
+        "type": "LoadBalancer"
+      }
+    }
+    
+    
+    ====================
+    
+    https://unofficial-kubernetes.readthedocs.io/en/latest/tasks/access-application-cluster/create-external-load-balancer/
+        
+        
