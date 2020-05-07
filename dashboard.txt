@@ -2,23 +2,8 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/a
 
 ========================================================
 
-cat > admin.yaml <<EOF
-  
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: admin-user
-  namespace: kubernetes-dashboard
- 
-EOF
-
-
-kubectl apply -f  admin.yaml
-
-======================================================
-
 cat > rbac.authorization.k8s.io.yaml <<EOF
-
+  
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
@@ -32,13 +17,36 @@ subjects:
   - kind: ServiceAccount
     name: kubernetes-dashboard
     namespace: kubernetes-dashboard
+ 
+EOF
+
+
+kubectl apply -f  rbac.authorization.k8s.io.yaml
+
+======================================================
+
+cat > developer.rbac.authorization.k8s.io.yaml <<EOF
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: kubernetes-dashboard-head
+  namespace: kubernetes-dashboard-head
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: kubernetes-dashboard-head
+    namespace: kubernetes-dashboard-head
     
 EOF
     
     
-kubectl delete -f  rbac.authorization.k8s.io.yaml 
+kubectl apply -f  developer.rbac.authorization.k8s.io.yaml
     
-kubectl apply -f  rbac.authorization.k8s.io.yaml 
+
 
 =========================================================
 
@@ -48,5 +56,6 @@ kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboar
 
 kubectl proxy --address='0.0.0.0' --disable-filter=true
 
+kubectl proxy 
 
 
