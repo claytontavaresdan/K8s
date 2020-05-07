@@ -48,9 +48,17 @@ kubectl apply -f  developer.rbac.authorization.k8s.io.yaml
     
 
 
+
+microk8s kubectl create deployment kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcamp:v1
+
+
+
 =========================================================
 
 kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}')
+
+
+
 
 =========================================================
 
