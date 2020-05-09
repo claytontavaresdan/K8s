@@ -6,9 +6,10 @@ sudo swapoff -a
 
 nano /etc/fstab
 
+========================
 
-
-
+sudo snap install canonical-livepatch
+sudo canonical-livepatch enable cb4bd687a44444828fafc9500a316dbe
 
 ========================
 
