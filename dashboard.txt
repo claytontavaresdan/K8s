@@ -20,7 +20,7 @@ subjects:
  
 EOF
 
-
+kubectl delete -f  rbac.authorization.k8s.io.yaml
 kubectl apply -f  rbac.authorization.k8s.io.yaml
 
 ======================================================
@@ -43,23 +43,11 @@ subjects:
     
 EOF
     
-    
+kubectl delete -f  developer.rbac.authorization.k8s.io.yaml  
 kubectl apply -f  developer.rbac.authorization.k8s.io.yaml
-    
-
-
-
-microk8s kubectl create deployment kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcamp:v1
-
-
-
+kubectl create deployment kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcamp:v1
 =========================================================
-
 kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}')
-
-
-
-
 =========================================================
 
 kubectl proxy --address='0.0.0.0' --disable-filter=true
