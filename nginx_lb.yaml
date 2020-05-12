@@ -32,3 +32,6 @@ spec:
   - port: 80
   selector:
     app: nginx
+
+
+ kubectl patch svc my-nginx-svc  -p '{"spec": {"type": "LoadBalancer", "externalIPs":["144.217.100.34"]}}'
