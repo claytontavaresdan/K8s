@@ -7,7 +7,7 @@ sudo swapoff -a
 nano /etc/fstab
 
 ========================
-
+sudo rm /etc/machine-id /var/lib/dbus/machine-id && sudo systemd-machine-id-setup
 sudo snap install canonical-livepatch
 sudo canonical-livepatch enable cb4bd687a44444828fafc9500a316dbe
 
